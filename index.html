@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOP Adviser — Statement of Purpose Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0C1222;--ink-80:#1A2338;--ink-60:#2A3650;--ink-40:#3D4F6B;
+  --ink-20:#6B7D99;--ink-10:#94A3B8;--ink-05:#CBD5E1;--ink-02:#E8EDF4;
+  --ink-01:#F4F6FA;--white:#FFF;
+  --blue:#2563EB;--blue-lt:#60A5FA;--blue-dim:rgba(37,99,235,.08);--blue-glow:rgba(96,165,250,.12);
+  --green:#16A34A;--green-lt:#4ADE80;--green-dim:rgba(22,163,74,.08);
+  --amber:#D97706;--amber-dim:rgba(217,119,6,.08);--red:#DC2626;
+  --r:10px;--rs:6px;--rl:16px;
+  --font:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'DM Mono','SF Mono',Consolas,monospace;
+}
+html{font-size:15px}
+body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.screen{display:none;flex-direction:column;min-height:100vh}
+.screen.active{display:flex}
+
+/* ─── Onboarding ─── */
+.onboard{
+  display:flex;align-items:center;justify-content:center;padding:40px 20px;
+  background:linear-gradient(160deg,var(--ink) 0%,var(--ink-80) 40%,var(--ink-60) 100%);
+  position:relative;overflow:hidden;
+}
+.onboard::before{
+  content:'';position:absolute;top:-30%;right:-20%;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);border-radius:50%;
+}
+.ob-card{
+  background:var(--white);border-radius:var(--rl);padding:44px 38px;
+  max-width:520px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.12);position:relative;z-index:1;
+}
+.ob-card h1{font-size:1.65rem;font-weight:700;color:var(--ink);letter-spacing:-.5px;margin-bottom:4px}
+.ob-card .tag{font-size:.85rem;color:var(--ink-20);margin-bottom:26px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:.72rem;font-weight:600;color:var(--ink-40);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.fg input,.fg select{
+  width:100%;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);
+  font-family:var(--font);font-size:.9rem;color:var(--ink);background:var(--ink-01);
+  outline:none;transition:border-color .15s,box-shadow .15s;
+}
+.fg input:focus,.fg select:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim)}
+.fg input::placeholder{color:var(--ink-10)}
+
+.consent-box{margin:18px 0;padding:14px 16px;background:var(--ink-01);border-radius:var(--r);border:1px solid var(--ink-02)}
+.cb-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.cb-row:last-child{margin-bottom:0}
+.cb-row input[type=checkbox]{margin-top:3px;accent-color:var(--blue);width:16px;height:16px;flex-shrink:0}
+.cb-row span{font-size:.8rem;color:var(--ink-40);line-height:1.45}
+.cb-row .req{color:var(--red);font-weight:600}
+
+.btn-go{
+  width:100%;padding:13px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);
+  font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;transition:background .15s;margin-top:6px;
+}
+.btn-go:hover{background:#1D4ED8}
+.btn-go:disabled{opacity:.35;cursor:not-allowed}
+.err{color:var(--red);font-size:.78rem;margin-top:8px;display:none}
+.err.show{display:block}
+
+/* ─── Chat ─── */
+.chat-hd{
+  padding:13px 24px;background:var(--ink);color:var(--white);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.chat-hd-left h2{font-size:.97rem;font-weight:700;letter-spacing:-.2px}
+.chat-hd-left .hm{font-size:.67rem;color:var(--ink-20);font-family:var(--mono);margin-top:1px}
+.hd-btns{display:flex;gap:5px}
+.hd-btn{
+  padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--rs);color:var(--ink-10);font-size:.7rem;font-family:var(--font);
+  font-weight:500;cursor:pointer;transition:all .15s;
+}
+.hd-btn:hover{background:rgba(255,255,255,.11);color:var(--white)}
+
+.ph-bar{
+  display:flex;gap:1px;padding:7px 24px;background:var(--ink-01);
+  border-bottom:1px solid var(--ink-02);overflow-x:auto;flex-shrink:0;
+}
+.ph-bar::-webkit-scrollbar{height:0}
+.ph-pip{
+  display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;
+  font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px;
+  white-space:nowrap;flex-shrink:0;transition:all .25s;
+}
+.ph-pip.done{background:var(--green-dim);color:var(--green)}
+.ph-pip.on{background:var(--blue-dim);color:var(--blue);box-shadow:0 0 8px var(--blue-glow)}
+.ph-pip.wait{color:var(--ink-10)}
+
+.pbar{height:2px;background:var(--ink-02);flex-shrink:0}
+.pfill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));transition:width .5s ease}
+
+.msgs{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:12px}
+@media(min-width:700px){.msgs{max-width:720px;margin:0 auto;width:100%;padding:18px 0}}
+
+.msg{display:flex;gap:10px;max-width:82%;animation:mIn .2s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.msg.adv{align-self:flex-start}
+.msg.usr{align-self:flex-end;flex-direction:row-reverse}
+
+.mav{
+  width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;margin-top:1px;
+}
+.msg.adv .mav{background:var(--blue-dim);border:1px solid rgba(37,99,235,.1)}
+.msg.usr .mav{background:var(--ink-01);border:1px solid var(--ink-02)}
+
+.mb{padding:10px 14px;border-radius:var(--r);font-size:.88rem;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
+.msg.adv .mb{background:var(--ink-01);border:1px solid var(--ink-02);border-top-left-radius:3px;color:var(--ink)}
+.msg.usr .mb{background:var(--blue);color:var(--white);border-top-right-radius:3px}
+
+.mt{font-size:.6rem;color:var(--ink-10);margin-top:2px;font-family:var(--mono)}
+
+.typing{display:none;align-self:flex-start;padding:12px 16px;background:var(--ink-01);border:1px solid var(--ink-02);border-radius:var(--r);gap:5px;align-items:center}
+.typing.show{display:flex}
+.td{width:6px;height:6px;background:var(--ink-10);border-radius:50%;animation:bk 1.4s infinite}
+.td:nth-child(2){animation-delay:.2s}
+.td:nth-child(3){animation-delay:.4s}
+@keyframes bk{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+.ibar{padding:10px 24px 18px;background:var(--white);border-top:1px solid var(--ink-02);flex-shrink:0}
+@media(min-width:700px){.ibar{max-width:720px;margin:0 auto;width:100%}}
+.irow{display:flex;gap:7px;align-items:flex-end}
+.ifield{
+  flex:1;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);
+  font-family:var(--font);font-size:.88rem;color:var(--ink);background:var(--ink-01);
+  resize:none;outline:none;min-height:42px;max-height:140px;line-height:1.5;transition:border-color .15s;
+}
+.ifield:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim)}
+.ifield::placeholder{color:var(--ink-10)}
+.ifield:disabled{opacity:.5}
+.bsend{
+  padding:10px 16px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);
+  font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;
+}
+.bsend:hover{background:#1D4ED8}
+.bsend:disabled{opacity:.3;cursor:not-allowed}
+.imeta{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-size:.65rem;font-family:var(--mono);color:var(--ink-10)}
+
+.sb-back{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.25);z-index:500}
+.sb-back.open{display:block}
+.sb{
+  position:fixed;top:0;right:-400px;bottom:0;width:370px;max-width:88vw;
+  background:var(--white);border-left:1px solid var(--ink-02);z-index:501;
+  overflow-y:auto;padding:20px;transition:right .25s ease;
+}
+.sb.open{right:0}
+.sb h3{font-size:.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.4px;margin-bottom:14px}
+.sb-close{
+  position:absolute;top:14px;right:14px;background:none;border:1px solid var(--ink-02);
+  border-radius:var(--rs);color:var(--ink-20);width:26px;height:26px;cursor:pointer;
+  font-size:14px;display:flex;align-items:center;justify-content:center;
+}
+.sb-close:hover{color:var(--ink);border-color:var(--ink-05)}
+.acard{
+  padding:10px;background:var(--ink-01);border:1px solid var(--ink-02);
+  border-radius:var(--rs);margin-bottom:6px;font-size:.75rem;
+}
+.acard .atag{font-size:.6rem;font-weight:600;text-transform:uppercase;color:var(--blue);letter-spacing:.4px;margin-bottom:2px;font-family:var(--mono)}
+.acard .aq{color:var(--ink-40);font-style:italic;line-height:1.4}
+.sb-empty{color:var(--ink-10);font-size:.8rem;line-height:1.5}
+.sb-export{
+  width:100%;margin-top:12px;padding:9px;background:var(--ink-01);border:1px solid var(--ink-02);
+  border-radius:var(--rs);font-family:var(--font);font-size:.75rem;font-weight:600;
+  color:var(--ink-40);cursor:pointer;transition:all .15s;
+}
+.sb-export:hover{background:var(--ink-02);color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- ═══ ONBOARDING ═══ -->
+<div id="onboard" class="screen onboard active">
+<div class="ob-card">
+  <h1>SOP Adviser</h1>
+  <p class="tag">AI-guided Statement of Purpose workshop for UK university applications</p>
+
+  <div class="fg">
+    <label>Your name</label>
+    <input type="text" id="f-name" placeholder="First name is fine">
+  </div>
+  <div class="fg">
+    <label>Email address</label>
+    <input type="email" id="f-email" placeholder="you@example.com">
+  </div>
+  <div class="fg">
+    <label>Application type</label>
+    <select id="f-type">
+      <option value="">Select...</option>
+      <option value="UCAS Undergraduate">UCAS Undergraduate</option>
+      <option value="Direct Undergraduate">Direct Undergraduate</option>
+      <option value="Postgraduate">Postgraduate</option>
+    </select>
+  </div>
+
+  <div class="consent-box">
+    <div class="cb-row">
+      <input type="checkbox" id="c-data">
+      <span>I understand my conversation data is processed by AI to generate my SOP. No data is stored on any server. <span class="req">*</span></span>
+    </div>
+    <div class="cb-row">
+      <input type="checkbox" id="c-ai">
+      <span>I understand this is an AI-assisted tool. The final SOP should be reviewed before submission. <span class="req">*</span></span>
+    </div>
+    <div class="cb-row">
+      <input type="checkbox" id="c-share">
+      <span>I consent to sharing my completed SOP and audit trail with One Education Consulting for product improvement. <em>(Optional)</em></span>
+    </div>
+  </div>
+
+  <button class="btn-go" id="btn-start" onclick="startSession()">Start SOP Workshop →</button>
+  <div class="err" id="ob-err"></div>
+</div>
+</div>
+
+<!-- ═══ CHAT ═══ -->
+<div id="chat" class="screen">
+  <div class="chat-hd">
+    <div class="chat-hd-left">
+      <h2>SOP Adviser</h2>
+      <div class="hm" id="hd-meta">Phase 1 · Programme Anchoring</div>
+    </div>
+    <div class="hd-btns">
+      <button class="hd-btn" onclick="toggleAudit()">📋 Audit <span id="audit-count">0</span></button>
+      <button class="hd-btn" onclick="exportAll()">⬇ Export</button>
+    </div>
+  </div>
+
+  <div class="ph-bar" id="phase-bar"></div>
+  <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+
+  <div class="msgs" id="msgs">
+    <div class="typing" id="typing">
+      <div class="td"></div><div class="td"></div><div class="td"></div>
+    </div>
+  </div>
+
+  <div class="ibar">
+    <div class="irow">
+      <textarea class="ifield" id="input" placeholder="Type your response..." rows="1"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();send()}"></textarea>
+      <button class="bsend" id="btn-send" onclick="send()">Send</button>
+    </div>
+    <div class="imeta">
+      <span id="phase-hint"></span>
+      <span id="exchange-count"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<div class="sb-back" id="sb-back" onclick="toggleAudit()"></div>
+<div class="sb" id="sb">
+  <button class="sb-close" onclick="toggleAudit()">×</button>
+  <h3>Audit Trail</h3>
+  <div id="audit-list"><p class="sb-empty">No entries yet. Your responses will be logged here as evidence for the compilation audit.</p></div>
+  <button class="sb-export" onclick="exportAll()">⬇ Download full audit trail</button>
+</div>
+
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// ⚙️ CONFIG — UPDATE THIS AFTER DEPLOYING YOUR WORKER
+// ═══════════════════════════════════════════════════════════
+const WORKER_URL = 'https://sop-adviser-proxy.YOUR-SUBDOMAIN.workers.dev';
+//
+// Steps:
+// 1. Deploy worker.js to Cloudflare Workers
+// 2. Add your OPENAI_API_KEY as an encrypted environment variable
+// 3. Replace the URL above with your worker's URL
+// 4. Push to GitHub, enable Pages, share the link
+//
+// ═══════════════════════════════════════════════════════════
+
+const PHASES = [
+  { id:'1',    name:'Programme',     icon:'🎯', desc:'Programme Anchoring' },
+  { id:'2',    name:'Discovery',     icon:'💡', desc:'Background Excavation' },
+  { id:'2.5',  name:'Frame Check',   icon:'🔎', desc:'Motivation Framing' },
+  { id:'2.75', name:'Voice',         icon:'🎭', desc:'Thinking Style' },
+  { id:'3',    name:'Programme Intel',icon:'📚', desc:'Course Alignment' },
+  { id:'4',    name:'Beyond Class',  icon:'🌍', desc:'Experience & Skills' },
+  { id:'auth', name:'Authorise',     icon:'✋', desc:'Confirm Drafting' },
+  { id:'5',    name:'Draft',         icon:'✍️', desc:'Write & Refine' },
+  { id:'6',    name:'Export',        icon:'📄', desc:'Final Output' },
+];
+
+let S = {
+  userName:'', userEmail:'', appType:'', shareConsent:false,
+  phaseIndex:0, messages:[], displayed:[], auditLog:[], sending:false,
+};
+
+const SYS = `You are SOP Adviser, an expert UK university admissions consultant specialising in Statements of Purpose (also called Personal Statements).
+
+You guide candidates through a structured, conversational discovery process to produce an authentic, credible SOP.
+
+You are not a ghostwriter. You are a thinking partner who scaffolds reflection, tests interpretations, and structures material provided by the student.
+
+You must not write the SOP until all required discovery phases are completed and the student explicitly authorises drafting.
+
+CORE PRINCIPLES (NON-NEGOTIABLE)
+
+1. The student's voice is the only voice. You may structure, connect, and refine, but you must never invent experiences, motivations, opinions, or achievements.
+2. Every claim in the SOP must trace back to something the student said. If a claim cannot be traced, it cannot appear.
+3. You maintain an internal audit log throughout the session recording key student statements, extracted insights, and how they inform the SOP.
+4. Admissions tutors read hundreds of SOPs. Your goal is specificity, intellectual honesty, and authentic reflection — not polish for its own sake.
+
+INTERNAL STATE: Maintain silently: candidate profile, audit log, key themes, thinking-style tags, programme intelligence, confirmed motivation frame, drafting authorisation status.
+
+Audit log rule: Only log statements that reveal motivation, represent turning points, evidence skills, enable programme connections, or correct assumptions. Skip filler.
+
+PHASE STRUCTURE — Follow IN ORDER. Announce transitions clearly.
+
+PHASE 1 — PROGRAMME ANCHORING (2-3 exchanges)
+Ask: Which programme and which university? What first attracted you? Accept casual answers.
+When ready, transition: "Great, I have a clear picture. Let's explore why this path makes sense for you."
+
+PHASE 2 — BACKGROUND EXCAVATION (5-8 exchanges)
+Open-ended questions. Never ask for a CV. Draw stories out.
+"What topic have you been thinking about outside class?" / "Was there a moment something clicked?" / "What have you disagreed with in this field?" / "Why does this subject matter?"
+Cultural note: Thai/SE Asian students may undersell achievements, frame motivation collectively, show respect-based learning. This is valid — probe gently.
+After 5-8 exchanges, move to Phase 2.5.
+
+PHASE 2.5 — MOTIVATION FRAMING CHECK (REQUIRED)
+Present 3 provisional interpretations + "none fit". Frame clearly as checks, not statements.
+Types: Early pattern recognition / Experiential trigger / Inspirational exposure / None fit
+If response is under 15 words, probe: "Can you tell me in your own words what feels right or wrong?"
+Do NOT proceed until meaningful engagement.
+
+PHASE 2.75 — THINKING-STYLE CALIBRATION
+Surface 4-6 descriptors from: Curious, Analytical, Pattern recognition, Evidence-driven, Reflective, Practical, Creative, Persistent, Observational, Collective, Respect-based inquiry, Adaptive, Methodical, Narrative.
+Student selects up to 3, removes wrong ones. These guide tone, not labels for the SOP.
+
+PHASE 3 — PROGRAMME INTELLIGENCE (REQUIRED)
+Ask for programme page/modules/course leader. If missing, flag gaps. Do NOT invent.
+Alignment questions: "This module on X — does that connect to what you said about Y?"
+
+PHASE 4 — BEYOND ACADEMICS (3-5 exchanges)
+Work, volunteering, hobbies, leadership. Only include what genuinely connects to the programme.
+
+DRAFTING AUTHORISATION (REQUIRED)
+"Are you happy for me to draft a first version, based entirely on what you've told me?"
+Do NOT draft without clear yes.
+
+PHASE 5 — DRAFT & REFINE (up to 3 iterations)
+Opening → Academic motivation → Programme fit → Skills → Future direction
+Annotate sources: [Based on your comment about X in Phase 2]
+Ask: Does this sound like you? What's off? What would you change?
+UCAS: 4000 chars. Postgrad: 500-1000 words.
+
+PHASE 6 — FINAL OUTPUT
+1) Clean SOP 2) Compilation audit mapping sections to student quotes + integrity statement.
+
+TONE: British English. ONE question at a time. Warm, professional, concise (2-5 sentences unless drafting). Praise specificity. Probe vagueness gently. Never condescend.`;
+
+function renderPhaseBar(){
+  const b=document.getElementById('phase-bar');
+  b.innerHTML=PHASES.map((p,i)=>{
+    let c='wait';if(i<S.phaseIndex)c='done';if(i===S.phaseIndex)c='on';
+    return`<div class="ph-pip ${c}">${i<S.phaseIndex?'✓':p.icon} ${p.name}</div>`;
+  }).join('');
+  document.getElementById('pfill').style.width=`${(S.phaseIndex/(PHASES.length-1))*100}%`;
+  document.getElementById('hd-meta').textContent=`Phase ${PHASES[S.phaseIndex].id} · ${PHASES[S.phaseIndex].desc}`;
+}
+
+function startSession(){
+  const n=document.getElementById('f-name').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const t=document.getElementById('f-type').value;
+  const cd=document.getElementById('c-data').checked;
+  const ca=document.getElementById('c-ai').checked;
+  const cs=document.getElementById('c-share').checked;
+  const err=document.getElementById('ob-err');
+
+  if(!n||!e||!t){err.textContent='Please fill in all fields.';err.classList.add('show');return}
+  if(!e.includes('@')){err.textContent='Please enter a valid email.';err.classList.add('show');return}
+  if(!cd||!ca){err.textContent='Please agree to the required consent checkboxes.';err.classList.add('show');return}
+  err.classList.remove('show');
+
+  S.userName=n;S.userEmail=e;S.appType=t;S.shareConsent=cs;
+
+  document.getElementById('onboard').classList.remove('active');
+  document.getElementById('chat').classList.add('active');
+  renderPhaseBar();
+
+  const sys=SYS.replace('{USER_NAME}',n).replace('{APP_TYPE}',t);
+  const greet=`Welcome ${n}! I'm your SOP Adviser — I'll guide you through building a compelling Statement of Purpose for your UK university application.\n\nMy job is to draw out your real thinking and experiences, then help you structure them. Every word in your final SOP will come from you.\n\nYou've told me this is a ${t} application. Let's start — what programme are you applying for, and at which university?`;
+
+  S.messages=[{role:'system',content:sys},{role:'assistant',content:greet}];
+  addMsg('adviser',greet);
+  updCounts();
+  document.getElementById('input').focus();
+}
+
+function addMsg(role,text){
+  const box=document.getElementById('msgs');
+  const typ=document.getElementById('typing');
+  const now=new Date();
+  const time=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  const ph=PHASES[S.phaseIndex];
+  S.displayed.push({role,text,time:now,phaseId:ph.id});
+
+  const d=document.createElement('div');
+  const isA=role==='adviser';
+  d.className=`msg ${isA?'adv':'usr'}`;
+  d.innerHTML=`<div class="mav">${isA?'🎓':'👤'}</div>
+    <div style="min-width:0">
+      <div class="mb">${esc(text)}</div>
+      <div class="mt" style="text-align:${isA?'left':'right'}">${time} · Phase ${ph.id}</div>
+    </div>`;
+  box.insertBefore(d,typ);
+  box.scrollTop=box.scrollHeight;
+}
+
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+
+async function send(){
+  const inp=document.getElementById('input');
+  const text=inp.value.trim();
+  if(!text||S.sending)return;
+
+  inp.value='';inp.style.height='auto';
+  S.sending=true;
+  document.getElementById('btn-send').disabled=true;
+  inp.disabled=true;
+
+  addMsg('user',text);
+  S.messages.push({role:'user',content:text});
+  addAudit(PHASES[S.phaseIndex].id,text);
+  document.getElementById('typing').classList.add('show');
+  document.getElementById('msgs').scrollTop=document.getElementById('msgs').scrollHeight;
+
+  try{
+    const r=await fetch(WORKER_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'gpt-4o',messages:S.messages,temperature:0.7,max_tokens:1200}),
+    });
+    if(!r.ok){const ed=await r.json().catch(()=>({}));throw new Error(ed.error||`API error ${r.status}`)}
+    const data=await r.json();
+    const reply=data.choices[0].message.content;
+    S.messages.push({role:'assistant',content:reply});
+    detectPhase(reply);
+    document.getElementById('typing').classList.remove('show');
+    addMsg('adviser',reply);
+  }catch(e){
+    document.getElementById('typing').classList.remove('show');
+    addMsg('adviser',`⚠️ Connection error: ${e.message}\n\nPlease try again.`);
+  }
+
+  S.sending=false;
+  document.getElementById('btn-send').disabled=false;
+  inp.disabled=false;inp.focus();
+  updCounts();
+}
+
+function detectPhase(reply){
+  const l=reply.toLowerCase();
+  const pid=PHASES[S.phaseIndex].id;
+  const sigs={
+    '1':['let\'s explore','why this path','move to exploring','background excavation'],
+    '2':['provisional interpretation','framing check','check whether i\'m understanding','check if i\'m understanding','motivation framing'],
+    '2.5':['thinking style','thinking-style','describe your thinking','calibrat'],
+    '2.75':['programme page','module list','share the programme','programme intel','course detail','course leader'],
+    '3':['outside of studying','beyond academics','beyond your studies','work, volunteering','outside class'],
+    '4':['happy for me to draft','are you happy','shall i draft','draft a first version','ready to draft'],
+    'auth':['here\'s my first draft','here is the draft','first draft','here\'s the draft','draft of your','statement of purpose\n'],
+    '5':['final version','compilation audit','audit trail','clean version','approved version'],
+  };
+  if(sigs[pid]&&sigs[pid].some(s=>l.includes(s))&&S.phaseIndex<PHASES.length-1){
+    S.phaseIndex++;renderPhaseBar();
+  }
+}
+
+function addAudit(phaseId,text){
+  S.auditLog.push({phaseId,timestamp:new Date().toISOString(),text});
+  renderAudit();
+}
+
+function renderAudit(){
+  const list=document.getElementById('audit-list');
+  document.getElementById('audit-count').textContent=S.auditLog.length;
+  if(!S.auditLog.length){list.innerHTML='<p class="sb-empty">No entries yet.</p>';return}
+  list.innerHTML=S.auditLog.map((e,i)=>`
+    <div class="acard">
+      <div class="atag">#${i+1} · Phase ${e.phaseId} · ${new Date(e.timestamp).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</div>
+      <div class="aq">"${esc(e.text).substring(0,200)}${e.text.length>200?'…':''}"</div>
+    </div>`).join('');
+}
+
+function toggleAudit(){
+  document.getElementById('sb-back').classList.toggle('open');
+  document.getElementById('sb').classList.toggle('open');
+}
+
+function updCounts(){
+  const n=S.displayed.filter(m=>m.role==='user').length;
+  document.getElementById('exchange-count').textContent=`${n} exchange${n!==1?'s':''}`;
+  document.getElementById('phase-hint').textContent=`Phase ${PHASES[S.phaseIndex].id} · ${PHASES[S.phaseIndex].desc}`;
+}
+
+function exportAll(){
+  const now=new Date();
+  let o=`SOP ADVISER — SESSION EXPORT\n============================\nCandidate: ${S.userName}\nEmail: ${S.userEmail}\nApplication type: ${S.appType}\nDate: ${now.toLocaleDateString('en-GB')}\nShare consent: ${S.shareConsent?'Yes':'No'}\nAdviser: AI-assisted (GPT-4o)\nPhase reached: ${PHASES[S.phaseIndex].id} (${PHASES[S.phaseIndex].desc})\nTotal exchanges: ${S.displayed.filter(m=>m.role==='user').length}\n\n═══ FULL CONVERSATION ═══\n`;
+  S.displayed.forEach(m=>{
+    const r=m.role==='user'?'STUDENT':'ADVISER';
+    const t=m.time.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    o+=`\n[${t} · Phase ${m.phaseId}] ${r}:\n${m.text}\n`;
+  });
+  o+=`\n═══ AUDIT LOG ═══\n`;
+  S.auditLog.forEach((e,i)=>{
+    const t=new Date(e.timestamp).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    o+=`\n[#${i+1}] Phase ${e.phaseId} · ${t}\n  "${e.text}"\n`;
+  });
+  o+=`\n═══ INTEGRITY STATEMENT ═══\nAll content in the SOP originates from the candidate's own statements. The AI's role was structural and editorial: asking discovery questions, testing interpretations, identifying connections, and refining language while preserving the candidate's authentic voice.\n`;
+
+  const blob=new Blob([o],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`sop-${S.userName.replace(/\s+/g,'-').toLowerCase()}-${now.toISOString().slice(0,10)}.txt`;
+  a.click();URL.revokeObjectURL(a.href);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('input');
+  if(inp)inp.addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,140)+'px'});
+});
+</script>
+</body>
+</html>
