@@ -21,158 +21,85 @@
 }
 html{font-size:15px}
 body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
-
 .screen{display:none;flex-direction:column;min-height:100vh}
 .screen.active{display:flex}
-
-/* ─── Onboarding ─── */
-.onboard{
-  display:flex;align-items:center;justify-content:center;padding:40px 20px;
-  background:linear-gradient(160deg,var(--ink) 0%,var(--ink-80) 40%,var(--ink-60) 100%);
-  position:relative;overflow:hidden;
-}
-.onboard::before{
-  content:'';position:absolute;top:-30%;right:-20%;width:600px;height:600px;
-  background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);border-radius:50%;
-}
-.ob-card{
-  background:var(--white);border-radius:var(--rl);padding:44px 38px;
-  max-width:520px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.12);position:relative;z-index:1;
-}
+.onboard{display:flex;align-items:center;justify-content:center;padding:40px 20px;background:linear-gradient(160deg,var(--ink) 0%,var(--ink-80) 40%,var(--ink-60) 100%);position:relative;overflow:hidden}
+.onboard::before{content:'';position:absolute;top:-30%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);border-radius:50%}
+.ob-card{background:var(--white);border-radius:var(--rl);padding:44px 38px;max-width:520px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.12);position:relative;z-index:1}
 .ob-card h1{font-size:1.65rem;font-weight:700;color:var(--ink);letter-spacing:-.5px;margin-bottom:4px}
 .ob-card .tag{font-size:.85rem;color:var(--ink-20);margin-bottom:26px}
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:.72rem;font-weight:600;color:var(--ink-40);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.fg input,.fg select{
-  width:100%;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);
-  font-family:var(--font);font-size:.9rem;color:var(--ink);background:var(--ink-01);
-  outline:none;transition:border-color .15s,box-shadow .15s;
-}
+.fg input,.fg select{width:100%;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);font-family:var(--font);font-size:.9rem;color:var(--ink);background:var(--ink-01);outline:none;transition:border-color .15s,box-shadow .15s}
 .fg input:focus,.fg select:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim)}
 .fg input::placeholder{color:var(--ink-10)}
-
 .consent-box{margin:18px 0;padding:14px 16px;background:var(--ink-01);border-radius:var(--r);border:1px solid var(--ink-02)}
 .cb-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
 .cb-row:last-child{margin-bottom:0}
 .cb-row input[type=checkbox]{margin-top:3px;accent-color:var(--blue);width:16px;height:16px;flex-shrink:0}
 .cb-row span{font-size:.8rem;color:var(--ink-40);line-height:1.45}
 .cb-row .req{color:var(--red);font-weight:600}
-
-.btn-go{
-  width:100%;padding:13px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);
-  font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;transition:background .15s;margin-top:6px;
-}
+.btn-go{width:100%;padding:13px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);font-family:var(--font);font-size:.93rem;font-weight:600;cursor:pointer;transition:background .15s;margin-top:6px}
 .btn-go:hover{background:#1D4ED8}
 .btn-go:disabled{opacity:.35;cursor:not-allowed}
 .err{color:var(--red);font-size:.78rem;margin-top:8px;display:none}
 .err.show{display:block}
-
-/* ─── Chat ─── */
-.chat-hd{
-  padding:13px 24px;background:var(--ink);color:var(--white);
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-}
+.chat-hd{padding:13px 24px;background:var(--ink);color:var(--white);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .chat-hd-left h2{font-size:.97rem;font-weight:700;letter-spacing:-.2px}
 .chat-hd-left .hm{font-size:.67rem;color:var(--ink-20);font-family:var(--mono);margin-top:1px}
 .hd-btns{display:flex;gap:5px}
-.hd-btn{
-  padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--rs);color:var(--ink-10);font-size:.7rem;font-family:var(--font);
-  font-weight:500;cursor:pointer;transition:all .15s;
-}
+.hd-btn{padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--rs);color:var(--ink-10);font-size:.7rem;font-family:var(--font);font-weight:500;cursor:pointer;transition:all .15s}
 .hd-btn:hover{background:rgba(255,255,255,.11);color:var(--white)}
-
-.ph-bar{
-  display:flex;gap:1px;padding:7px 24px;background:var(--ink-01);
-  border-bottom:1px solid var(--ink-02);overflow-x:auto;flex-shrink:0;
-}
+.ph-bar{display:flex;gap:1px;padding:7px 24px;background:var(--ink-01);border-bottom:1px solid var(--ink-02);overflow-x:auto;flex-shrink:0}
 .ph-bar::-webkit-scrollbar{height:0}
-.ph-pip{
-  display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;
-  font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px;
-  white-space:nowrap;flex-shrink:0;transition:all .25s;
-}
+.ph-pip{display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap;flex-shrink:0;transition:all .25s}
 .ph-pip.done{background:var(--green-dim);color:var(--green)}
 .ph-pip.on{background:var(--blue-dim);color:var(--blue);box-shadow:0 0 8px var(--blue-glow)}
 .ph-pip.wait{color:var(--ink-10)}
-
 .pbar{height:2px;background:var(--ink-02);flex-shrink:0}
 .pfill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-lt));transition:width .5s ease}
-
 .msgs{flex:1;overflow-y:auto;padding:18px 24px;display:flex;flex-direction:column;gap:12px}
 @media(min-width:700px){.msgs{max-width:720px;margin:0 auto;width:100%;padding:18px 0}}
-
 .msg{display:flex;gap:10px;max-width:82%;animation:mIn .2s ease}
 @keyframes mIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .msg.adv{align-self:flex-start}
 .msg.usr{align-self:flex-end;flex-direction:row-reverse}
-
-.mav{
-  width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;
-  font-size:12px;flex-shrink:0;margin-top:1px;
-}
+.mav{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:1px}
 .msg.adv .mav{background:var(--blue-dim);border:1px solid rgba(37,99,235,.1)}
 .msg.usr .mav{background:var(--ink-01);border:1px solid var(--ink-02)}
-
 .mb{padding:10px 14px;border-radius:var(--r);font-size:.88rem;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
 .msg.adv .mb{background:var(--ink-01);border:1px solid var(--ink-02);border-top-left-radius:3px;color:var(--ink)}
 .msg.usr .mb{background:var(--blue);color:var(--white);border-top-right-radius:3px}
-
 .mt{font-size:.6rem;color:var(--ink-10);margin-top:2px;font-family:var(--mono)}
-
 .typing{display:none;align-self:flex-start;padding:12px 16px;background:var(--ink-01);border:1px solid var(--ink-02);border-radius:var(--r);gap:5px;align-items:center}
 .typing.show{display:flex}
 .td{width:6px;height:6px;background:var(--ink-10);border-radius:50%;animation:bk 1.4s infinite}
 .td:nth-child(2){animation-delay:.2s}
 .td:nth-child(3){animation-delay:.4s}
 @keyframes bk{0%,60%,100%{opacity:.3}30%{opacity:1}}
-
 .ibar{padding:10px 24px 18px;background:var(--white);border-top:1px solid var(--ink-02);flex-shrink:0}
 @media(min-width:700px){.ibar{max-width:720px;margin:0 auto;width:100%}}
 .irow{display:flex;gap:7px;align-items:flex-end}
-.ifield{
-  flex:1;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);
-  font-family:var(--font);font-size:.88rem;color:var(--ink);background:var(--ink-01);
-  resize:none;outline:none;min-height:42px;max-height:140px;line-height:1.5;transition:border-color .15s;
-}
+.ifield{flex:1;padding:10px 13px;border:1.5px solid var(--ink-02);border-radius:var(--r);font-family:var(--font);font-size:.88rem;color:var(--ink);background:var(--ink-01);resize:none;outline:none;min-height:42px;max-height:140px;line-height:1.5;transition:border-color .15s}
 .ifield:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim)}
 .ifield::placeholder{color:var(--ink-10)}
 .ifield:disabled{opacity:.5}
-.bsend{
-  padding:10px 16px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);
-  font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap;
-}
+.bsend{padding:10px 16px;background:var(--blue);color:var(--white);border:none;border-radius:var(--r);font-family:var(--font);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .15s;white-space:nowrap}
 .bsend:hover{background:#1D4ED8}
 .bsend:disabled{opacity:.3;cursor:not-allowed}
 .imeta{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-size:.65rem;font-family:var(--mono);color:var(--ink-10)}
-
 .sb-back{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.25);z-index:500}
 .sb-back.open{display:block}
-.sb{
-  position:fixed;top:0;right:-400px;bottom:0;width:370px;max-width:88vw;
-  background:var(--white);border-left:1px solid var(--ink-02);z-index:501;
-  overflow-y:auto;padding:20px;transition:right .25s ease;
-}
+.sb{position:fixed;top:0;right:-400px;bottom:0;width:370px;max-width:88vw;background:var(--white);border-left:1px solid var(--ink-02);z-index:501;overflow-y:auto;padding:20px;transition:right .25s ease}
 .sb.open{right:0}
 .sb h3{font-size:.75rem;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.4px;margin-bottom:14px}
-.sb-close{
-  position:absolute;top:14px;right:14px;background:none;border:1px solid var(--ink-02);
-  border-radius:var(--rs);color:var(--ink-20);width:26px;height:26px;cursor:pointer;
-  font-size:14px;display:flex;align-items:center;justify-content:center;
-}
+.sb-close{position:absolute;top:14px;right:14px;background:none;border:1px solid var(--ink-02);border-radius:var(--rs);color:var(--ink-20);width:26px;height:26px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
 .sb-close:hover{color:var(--ink);border-color:var(--ink-05)}
-.acard{
-  padding:10px;background:var(--ink-01);border:1px solid var(--ink-02);
-  border-radius:var(--rs);margin-bottom:6px;font-size:.75rem;
-}
+.acard{padding:10px;background:var(--ink-01);border:1px solid var(--ink-02);border-radius:var(--rs);margin-bottom:6px;font-size:.75rem}
 .acard .atag{font-size:.6rem;font-weight:600;text-transform:uppercase;color:var(--blue);letter-spacing:.4px;margin-bottom:2px;font-family:var(--mono)}
 .acard .aq{color:var(--ink-40);font-style:italic;line-height:1.4}
 .sb-empty{color:var(--ink-10);font-size:.8rem;line-height:1.5}
-.sb-export{
-  width:100%;margin-top:12px;padding:9px;background:var(--ink-01);border:1px solid var(--ink-02);
-  border-radius:var(--rs);font-family:var(--font);font-size:.75rem;font-weight:600;
-  color:var(--ink-40);cursor:pointer;transition:all .15s;
-}
+.sb-export{width:100%;margin-top:12px;padding:9px;background:var(--ink-01);border:1px solid var(--ink-02);border-radius:var(--rs);font-family:var(--font);font-size:.75rem;font-weight:600;color:var(--ink-40);cursor:pointer;transition:all .15s}
 .sb-export:hover{background:var(--ink-02);color:var(--ink)}
 </style>
 </head>
@@ -184,7 +111,6 @@ body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-heig
 <div class="ob-card">
   <h1>SOP Adviser</h1>
   <p class="tag">AI-guided Statement of Purpose workshop for UK university applications</p>
-
   <div class="fg">
     <label>Your name</label>
     <input type="text" id="f-name" placeholder="First name is fine">
@@ -202,7 +128,6 @@ body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-heig
       <option value="Postgraduate">Postgraduate</option>
     </select>
   </div>
-
   <div class="consent-box">
     <div class="cb-row">
       <input type="checkbox" id="c-data">
@@ -217,7 +142,6 @@ body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-heig
       <span>I consent to sharing my completed SOP and audit trail with One Education Consulting for product improvement. <em>(Optional)</em></span>
     </div>
   </div>
-
   <button class="btn-go" id="btn-start" onclick="startSession()">Start SOP Workshop →</button>
   <div class="err" id="ob-err"></div>
 </div>
@@ -227,24 +151,21 @@ body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-heig
 <div id="chat" class="screen">
   <div class="chat-hd">
     <div class="chat-hd-left">
-      <h2>SOP Adviser</h2>
-      <div class="hm" id="hd-meta">Phase 1 · Programme Anchoring</div>
+      <h2>SOP Adviser <span style="font-size:.6rem;color:var(--ink-20);font-weight:400;margin-left:6px">v4</span></h2>
+      <div class="hm" id="hd-meta">Phase 0 · Session Setup</div>
     </div>
     <div class="hd-btns">
       <button class="hd-btn" onclick="toggleAudit()">📋 Audit <span id="audit-count">0</span></button>
       <button class="hd-btn" onclick="exportAll()">⬇ Export</button>
     </div>
   </div>
-
   <div class="ph-bar" id="phase-bar"></div>
   <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
-
   <div class="msgs" id="msgs">
     <div class="typing" id="typing">
       <div class="td"></div><div class="td"></div><div class="td"></div>
     </div>
   </div>
-
   <div class="ibar">
     <div class="irow">
       <textarea class="ifield" id="input" placeholder="Type your response..." rows="1"
@@ -266,29 +187,21 @@ body{font-family:var(--font);background:var(--ink-01);color:var(--ink);line-heig
   <div id="audit-list"><p class="sb-empty">No entries yet. Your responses will be logged here as evidence for the compilation audit.</p></div>
   <button class="sb-export" onclick="exportAll()">⬇ Download full audit trail</button>
 </div>
-
 </div>
 
 <script>
 // ═══════════════════════════════════════════════════════════
-// ⚙️ CONFIG — UPDATE THIS AFTER DEPLOYING YOUR WORKER
-// ═══════════════════════════════════════════════════════════
 const WORKER_URL = 'https://sop-adviser-proxy.mylogins555.workers.dev';
-//
-// Steps:
-// 1. Deploy worker.js to Cloudflare Workers
-// 2. Add your OPENAI_API_KEY as an encrypted environment variable
-// 3. Replace the URL above with your worker's URL
-// 4. Push to GitHub, enable Pages, share the link
-//
 // ═══════════════════════════════════════════════════════════
 
 const PHASES = [
+  { id:'0',    name:'Setup',         icon:'⚙️', desc:'Session Setup' },
   { id:'1',    name:'Programme',     icon:'🎯', desc:'Programme Anchoring' },
   { id:'2',    name:'Discovery',     icon:'💡', desc:'Background Excavation' },
   { id:'2.5',  name:'Frame Check',   icon:'🔎', desc:'Motivation Framing' },
   { id:'2.75', name:'Voice',         icon:'🎭', desc:'Thinking Style' },
   { id:'3',    name:'Programme Intel',icon:'📚', desc:'Course Alignment' },
+  { id:'3.5',  name:'Readiness',     icon:'📋', desc:'Academic Readiness' },
   { id:'4',    name:'Beyond Class',  icon:'🌍', desc:'Experience & Skills' },
   { id:'auth', name:'Authorise',     icon:'✋', desc:'Confirm Drafting' },
   { id:'5',    name:'Draft',         icon:'✍️', desc:'Write & Refine' },
@@ -308,87 +221,126 @@ You are not a ghostwriter. You are a thinking partner who scaffolds reflection, 
 
 You must not write the SOP until all required discovery phases are completed and the student explicitly authorises drafting.
 
-CRITICAL BEHAVIOUR RULES:
-- NEVER tell the user this will take a long time, an hour, or multiple sessions. You are in a live chat. The whole session should feel like a natural 30-minute conversation.
-- NEVER dump large blocks of text. Keep responses to 2-5 sentences unless you are drafting the SOP in Phase 5.
-- Ask ONE question at a time. Wait for the answer before asking another.
-- Be warm, conversational, and human. Not formal or procedural.
+DEPTH AND OUTPUT CONSTRAINTS (V4-Lite)
+
+1. Default to 80/20. Keep outputs tight and practical.
+2. Limit reasoning to first-order and second-order effects only.
+3. Avoid theoretical detours, long edge-case exploration, or "essay mode."
+4. Ask one question at a time. Keep questions short.
+5. Keep each assistant message to: one short setup line (if needed), one question, optional brief log summary (1-2 lines max).
+6. Target total session length: 25-35 minutes. Do not pad the conversation. When you have enough material, move on.
+7. NEVER tell the user this will take a long time. This is a live, flowing conversation.
+
+DEPTH TRIGGERS (opt-in only, for counsellor use):
+Default mode is Shipping Mode — concise, practical, forward-moving.
+Deeper analysis triggered ONLY when a counsellor types: /deeper, /edge-cases, /expand, or /long-version
+When triggered, expand the current topic then return to Shipping Mode.
+A counsellor may also type /flag [note] to inject an observation into the audit log.
+Do NOT mention depth triggers to the student.
 
 CORE PRINCIPLES (NON-NEGOTIABLE)
 
 1. The student's voice is the only voice. You may structure, connect, and refine, but you must never invent experiences, motivations, opinions, or achievements.
 2. Every claim in the SOP must trace back to something the student said. If a claim cannot be traced, it cannot appear.
-3. You maintain an internal audit log throughout the session recording key student statements, extracted insights, and how they inform the SOP.
-4. Admissions tutors read hundreds of SOPs. Your goal is specificity, intellectual honesty, and authentic reflection — not polish for its own sake.
+3. Maintain an internal audit log throughout the session. Record key statements, extracted insights, translation (if applicable), and how each insight informs the SOP.
+4. Keep the discussion focused on information relevant to the SOP and programme fit. If the conversation drifts, gently redirect.
+5. The experience must feel natural and conversational. Do not refer to delays, pauses, or internal mechanics.
 
-INTERNAL STATE: Maintain silently: candidate profile (including language preference, English proficiency score, academic qualifications), audit log, key themes, thinking-style tags, programme intelligence, confirmed motivation frame, vocabulary level choice, drafting authorisation status.
+INTERNAL STATE: Maintain silently: candidate profile (name, programme, university, app type, format constraint, conversation language, translation status, English test scores, draft language level choice, cultural notes), academic readiness fields (qualification, subjects, grades, entry requirement match, concerns, mitigation), audit log, key themes, thinking-style tags, programme intelligence, confirmed motivation frame, drafting authorisation.
 
-Audit log rule: Only log statements that reveal motivation, represent turning points, evidence skills, enable programme connections, or correct assumptions. Skip filler.
+Audit log: Only log statements that reveal motivation, represent turning points, evidence skills, enable programme alignment, or correct assumptions. Tag claim strength: Strong/Medium/Weak. Skip filler.
+
+RED FLAGS (internal only — but ALL must be acted on):
+Motivation thin / Evidence weak / Academic mismatch / Missing prerequisites / Overconfidence vs background / Programme misalignment / Language ceiling risk / Low engagement / Inconsistency
+
+Red flag action rules:
+- Programme misalignment: raise honestly but constructively. "Based on what you've told me about your interests in X, I want to check — have you also looked at programmes that focus more on X? This one emphasises Y." Log concern, student response, and resolution in audit.
+- Academic mismatch: explore mitigation in Phase 3.5. Help build a case or acknowledge gap honestly.
+- Language ceiling risk: factor into vocabulary calibration. Flag in audit if chosen draft level may not be sustainable.
+- Motivation thin: stay in Phase 2 longer. Do not move on with weak material.
+- Low engagement: check in gently. "I want to make sure we're covering what matters to you — is there something else you'd rather focus on?"
+- No red flag should reach Phase 5 unaddressed. If unresolved, note in audit with honest assessment.
 
 PHASE STRUCTURE — Follow IN ORDER. Announce transitions clearly.
 
-PHASE 1 — PROGRAMME ANCHORING & PROFILE (3-5 exchanges)
-Ask these across a few natural exchanges (not all at once):
-- Which programme and which university?
-- What first attracted you? Accept casual answers.
-- Would you prefer to have our conversation in Thai or English? (Note: the final SOP will always be written in English, but we can discuss in whichever language you're more comfortable with.)
-- Have you taken an English language qualification (IELTS, TOEFL, or other)? If yes, what was your overall score and your writing score?
-- What are your current or most recent academic qualifications? (Degree subject, university, grade/GPA if they have it.)
+PHASE 0 — SESSION SETUP (REQUIRED)
+Ask one at a time:
+1. "What language would you prefer for our discussion? The final SOP will be written in English, but we can talk in any language you're comfortable with. I'll translate your points and keep a record."
+2. "Have you taken an English test such as IELTS or TOEFL? If yes, what was your overall score and writing score?"
+3. "When I draft your SOP, would you prefer the language to reflect your writing score — so it sounds naturally like you — or use more advanced academic English? I'll record your choice either way."
+4. "One practical question: do you know the word or character limit for your statement? For UCAS it's 4,000 characters. For most postgraduate SOPs it's 500-1,000 words. If you're not sure, tell me and we'll confirm it."
+Then: "Great. I'll keep our discussion focused on building a strong, authentic SOP. Let's get started."
+Proceed to Phase 1.
 
-LANGUAGE CALIBRATION:
-If the student provides an English proficiency score, note it internally. Before moving to Phase 2, offer this choice:
-"I can see your writing score is [X]. When I draft your SOP, I can write it at a vocabulary and sentence complexity level that feels natural for your English ability — so it sounds authentically like you. Or I can write at a higher academic level if you prefer. Which would you like?"
-Document their choice in the audit log. This is important — an SOP written at C2 level by a student with IELTS 6.0 writing is a red flag to admissions tutors.
-If the student chooses to converse in Thai, conduct the conversation in Thai but always draft the SOP in English.
-
-ACADEMIC QUALIFICATION CHECK:
-Based on the qualifications they share, briefly assess fit with the chosen programme:
-- If there's a clear match, acknowledge it: "Your background in X gives you a strong foundation for this programme."
-- If there's a gap, flag it constructively: "This programme has a quantitative methods component — have you covered any statistics or maths in your studies?"
-- If the programme has specific entry requirements (e.g. 2:1 equivalent, specific subjects), note any potential issues gently.
-Do NOT dwell on this — one exchange is enough. Move on.
-
-When ready, transition: "Great, I have a clear picture of where you're aiming and your background. Let's explore why this path makes sense for you."
+PHASE 1 — PROGRAMME ANCHORING (2-3 exchanges)
+Ask: Which programme and which university? What first attracted you? Accept casual answers.
+Transition: "Great. I have a clear picture of where you're aiming. Let's explore why this path makes sense for you."
 
 PHASE 2 — BACKGROUND EXCAVATION (5-8 exchanges)
-Open-ended questions. Never ask for a CV. Draw stories out.
-"What topic have you been thinking about outside class?" / "Was there a moment something clicked?" / "What have you disagreed with in this field?" / "Why does this subject matter?"
-Cultural note: Thai/SE Asian students may undersell achievements, frame motivation collectively, show respect-based learning. This is valid — probe gently, do not push. Ask "what did you do?" more than "how did you feel?"
+Purpose: extract intellectual signal, not credentials. Open-ended, conversational. Never ask for a CV.
+
+Opening questions (select 2-3, adapt):
+- "What topic or idea have you found yourself thinking about outside class — something you've read, watched, or argued about?"
+- "Was there a moment when something clicked and you wanted to understand it more deeply?"
+- "What's something in this field you've disagreed with or questioned?"
+- "If you had to explain to a friend why this subject matters in the real world, what would you say?"
+- "Has anyone or anything — a teacher, author, experience — changed how you think about this field?"
+
+Follow-up probes (one at a time):
+- "Tell me more about that."
+- "What specifically interested you?"
+- "How did that change your thinking?"
+- "What did you do with that interest — did it lead anywhere?"
+
+Listen for: curiosity, turning points, independent thinking, connections the student hasn't named, depth over breadth.
+
+Cultural awareness: Thai/SE Asian students may undersell achievements, frame motivation collectively, show respect-based learning. This is valid. Ask "what did you do?" more than "how did you feel?"
+
+Redirect rule: if conversation drifts, steer back gently.
+Thin material rule: if after 5 exchanges material is weak, do NOT move on. Try different angles.
+
 After 5-8 exchanges, move to Phase 2.5.
 
 PHASE 2.5 — MOTIVATION FRAMING CHECK (REQUIRED)
-Present 3 provisional interpretations + "none fit". Frame clearly as checks, not statements.
+Present 3 interpretations + "none fit". Frame as checks, not statements.
 Types: Early pattern recognition / Experiential trigger / Inspirational exposure / None fit
-If response is under 15 words, probe: "Can you tell me in your own words what feels right or wrong?"
-Do NOT proceed until meaningful engagement.
+Engagement guardrail: if response under 15 words, probe further before proceeding.
 
 PHASE 2.75 — THINKING-STYLE CALIBRATION
-Surface 4-6 descriptors from: Curious, Analytical, Pattern recognition, Evidence-driven, Reflective, Practical, Creative, Persistent, Observational, Collective, Respect-based inquiry, Adaptive, Methodical, Narrative.
-Student selects up to 3, removes wrong ones. These guide tone, not labels for the SOP.
+Surface 4-6 descriptors. Confirm up to 3. Tone guidance only.
 
 PHASE 3 — PROGRAMME INTELLIGENCE (REQUIRED)
-Ask for programme page/modules/course leader. Say: "Can you paste the programme page content or share the URL? I need the module list and any distinctive features so your SOP can reference specific details."
-If missing, flag gaps clearly. Do NOT invent programme details.
-Alignment questions: "This module on X — does that connect to what you said about Y?"
-Also connect to their academic qualifications: "Your background in Z means you'd bring existing knowledge to the module on W."
+Ask: "Can you paste the programme page content or share the URL? I need the module list and any distinctive features so your SOP can reference specific details."
+If unavailable, flag: "Without module specifics, your SOP will be more general than ideal."
+Never invent details.
+Alignment questions linking modules to their interests and background.
+Programme fit check: if misalignment detected, raise constructively here.
+
+PHASE 3.5 — ACADEMIC READINESS CHECK (REQUIRED)
+Ask one at a time:
+1. "Can you tell me about your current or most recent qualification and main subjects? Include any grades you feel are relevant."
+2. "Looking at the modules we discussed, how prepared do you feel for the more demanding parts of this programme?"
+3. "Is there anything you're slightly concerned about — academic background, technical skills, or entry requirements?"
+Listen for: self-awareness, confidence vs realism, missing prerequisites, proactive preparation.
+Do not interrogate. Allow narrative answers.
+If serious mismatch: explore mitigation constructively.
 
 PHASE 4 — BEYOND ACADEMICS (3-5 exchanges)
-Work, volunteering, hobbies, leadership. Only include what genuinely connects to the programme.
+Work, volunteering, hobbies, leadership. Only include what connects to programme or competencies.
 
 DRAFTING AUTHORISATION (REQUIRED)
-"Are you happy for me to draft a first version, based entirely on what you've told me?"
-Do NOT draft without clear yes.
+"I now have a full picture of your motivation, readiness, and programme fit. Are you happy for me to draft your SOP using only what you've told me?"
+Record explicit yes.
 
 PHASE 5 — DRAFT & REFINE (up to 3 iterations)
-Opening → Academic motivation (including qualification fit) → Programme fit → Skills → Future direction
-Annotate sources: [Based on your comment about X in Phase 2]
-VOCABULARY CALIBRATION: If the student opted for natural-level English, write at or slightly above their proficiency level. Avoid vocabulary or sentence structures that would be implausible for their demonstrated English ability. If they opted for higher academic level, write accordingly. Document which approach was used.
-Ask: Does this sound like you? What's off? What would you change?
-UCAS: 4000 chars. Postgrad: 500-1000 words.
+Structure: Opening, Academic motivation (inc qualification fit), Programme alignment, Skills & evidence, Future direction.
+Respect format constraint from Phase 0. Respect language ceiling choice. Every claim traces to audit. Annotate sources.
+If red flags were identified, handle honestly in the draft (acknowledge gaps with mitigation).
+After each draft: "Does this sound like you? What feels off? What would you change?"
 
 PHASE 6 — FINAL OUTPUT
-1) Clean SOP 2) Compilation audit mapping sections to student quotes + integrity statement.
-The audit must include: language preference chosen, English proficiency score, vocabulary level choice, and academic qualifications assessed.
+1) Clean SOP
+2) Compilation Audit including: language/translation choices, motivation frame, thinking style, academic readiness summary, programme fit assessment, red flags raised and resolved, authorisation record, evidence mapping, format compliance, integrity statement.
 
 TONE: British English. ONE question at a time. Warm, professional, concise (2-5 sentences unless drafting). Praise specificity. Probe vagueness gently. Never condescend. If conversing in Thai, be natural and warm in Thai.`;
 
@@ -423,7 +375,7 @@ function startSession(){
   renderPhaseBar();
 
   const sys=SYS.replace('{USER_NAME}',n).replace('{APP_TYPE}',t);
-  const greet=`Welcome ${n}! I'm your SOP Adviser — I'll guide you through building a compelling Statement of Purpose for your UK university application.\n\nMy job is to draw out your real thinking and experiences, then help you structure them. Every word in your final SOP will come from you.\n\nYou've told me this is a ${t} application. Before we dive in — would you prefer to have our conversation in Thai or English? The final SOP will be written in English either way, but we can chat in whichever language you're more comfortable with.\n\nAnd to get started: what programme are you applying for, and at which university?`;
+  const greet=`Welcome ${n}! I'm your SOP Adviser. I'll help you build a strong, authentic Statement of Purpose for your UK university application.\n\nEverything in your final SOP will come from you — my job is to draw it out and structure it.\n\nFirst, a quick setup question: what language would you prefer for our discussion? We can talk in Thai, English, or any language you're comfortable with. The final SOP will be written in English either way.`;
 
   S.messages=[{role:'system',content:sys},{role:'assistant',content:greet}];
   addMsg('adviser',greet);
@@ -438,7 +390,6 @@ function addMsg(role,text){
   const time=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   const ph=PHASES[S.phaseIndex];
   S.displayed.push({role,text,time:now,phaseId:ph.id});
-
   const d=document.createElement('div');
   const isA=role==='adviser';
   d.className=`msg ${isA?'adv':'usr'}`;
@@ -458,6 +409,14 @@ async function send(){
   const text=inp.value.trim();
   if(!text||S.sending)return;
 
+  // Handle counsellor slash commands locally
+  if(text.startsWith('/flag ')){
+    addAudit(PHASES[S.phaseIndex].id,'[COUNSELLOR FLAG] '+text.substring(6));
+    addMsg('user','🚩 '+text.substring(6));
+    inp.value='';
+    return;
+  }
+
   inp.value='';inp.style.height='auto';
   S.sending=true;
   document.getElementById('btn-send').disabled=true;
@@ -473,7 +432,7 @@ async function send(){
     const r=await fetch(WORKER_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'gpt-4o',messages:S.messages,temperature:0.7,max_tokens:1200}),
+      body:JSON.stringify({model:'gpt-4o',messages:S.messages,temperature:0.7,max_tokens:1500}),
     });
     if(!r.ok){const ed=await r.json().catch(()=>({}));throw new Error(ed.error||`API error ${r.status}`)}
     const data=await r.json();
@@ -497,14 +456,16 @@ function detectPhase(reply){
   const l=reply.toLowerCase();
   const pid=PHASES[S.phaseIndex].id;
   const sigs={
-    '1':['let\'s explore','why this path','move to exploring','background excavation'],
-    '2':['provisional interpretation','framing check','check whether i\'m understanding','check if i\'m understanding','motivation framing'],
-    '2.5':['thinking style','thinking-style','describe your thinking','calibrat'],
-    '2.75':['programme page','module list','share the programme','programme intel','course detail','course leader'],
-    '3':['outside of studying','beyond academics','beyond your studies','work, volunteering','outside class'],
-    '4':['happy for me to draft','are you happy','shall i draft','draft a first version','ready to draft'],
-    'auth':['here\'s my first draft','here is the draft','first draft','here\'s the draft','draft of your','statement of purpose\n'],
-    '5':['final version','compilation audit','audit trail','clean version','approved version'],
+    '0':   ['which programme','what programme','let\'s get started','let\'s start'],
+    '1':   ['let\'s explore','why this path','explore why','background excavation','what topic'],
+    '2':   ['provisional interpretation','framing check','check whether i\'m understanding','check if i\'m understanding','motivation framing','three interpretation'],
+    '2.5': ['thinking style','thinking-style','describe your thinking','calibrat'],
+    '2.75':['programme page','module list','share the programme','programme intel','course detail','course leader','paste the programme'],
+    '3':   ['current qualification','most recent qualification','academic readiness','how prepared do you feel','main subjects'],
+    '3.5': ['outside of studying','beyond academics','beyond your studies','work, volunteering','outside class','spend your time on'],
+    '4':   ['happy for me to draft','are you happy','shall i draft','draft a first version','ready to draft','full picture'],
+    'auth':['here\'s my first draft','here is the draft','first draft','here\'s the draft','draft of your','statement of purpose\n','opening —','academic motivation'],
+    '5':   ['final version','compilation audit','audit trail','clean version','approved version','final sop'],
   };
   if(sigs[pid]&&sigs[pid].some(s=>l.includes(s))&&S.phaseIndex<PHASES.length-1){
     S.phaseIndex++;renderPhaseBar();
@@ -540,7 +501,7 @@ function updCounts(){
 
 function exportAll(){
   const now=new Date();
-  let o=`SOP ADVISER — SESSION EXPORT\n============================\nCandidate: ${S.userName}\nEmail: ${S.userEmail}\nApplication type: ${S.appType}\nDate: ${now.toLocaleDateString('en-GB')}\nShare consent: ${S.shareConsent?'Yes':'No'}\nAdviser: AI-assisted (GPT-4o)\nPhase reached: ${PHASES[S.phaseIndex].id} (${PHASES[S.phaseIndex].desc})\nTotal exchanges: ${S.displayed.filter(m=>m.role==='user').length}\n\n═══ FULL CONVERSATION ═══\n`;
+  let o=`SOP ADVISER — SESSION EXPORT (v4-Lite)\n======================================\nCandidate: ${S.userName}\nEmail: ${S.userEmail}\nApplication type: ${S.appType}\nDate: ${now.toLocaleDateString('en-GB')}\nShare consent: ${S.shareConsent?'Yes':'No'}\nAdviser: AI-assisted (GPT-4o)\nPhase reached: ${PHASES[S.phaseIndex].id} (${PHASES[S.phaseIndex].desc})\nTotal exchanges: ${S.displayed.filter(m=>m.role==='user').length}\n\n═══ FULL CONVERSATION ═══\n`;
   S.displayed.forEach(m=>{
     const r=m.role==='user'?'STUDENT':'ADVISER';
     const t=m.time.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
@@ -551,7 +512,7 @@ function exportAll(){
     const t=new Date(e.timestamp).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
     o+=`\n[#${i+1}] Phase ${e.phaseId} · ${t}\n  "${e.text}"\n`;
   });
-  o+=`\n═══ INTEGRITY STATEMENT ═══\nAll content in the SOP originates from the candidate's own statements. The AI's role was structural and editorial: asking discovery questions, testing interpretations, identifying connections, and refining language while preserving the candidate's authentic voice.\n`;
+  o+=`\n═══ INTEGRITY STATEMENT ═══\nAll content in the SOP originates from the candidate's own statements during the guided conversation. No experiences, opinions, or motivations were fabricated. The AI's contribution was structural and editorial: asking discovery questions, testing interpretations, identifying thematic connections, and refining language while preserving the candidate's authentic voice.\n\nWhere translation was used, the original student statement and English rendering are both recorded. The language level of the final draft reflects the candidate's documented choice. Any concerns about programme fit or academic readiness identified during the session are recorded, along with how they were addressed.\n`;
 
   const blob=new Blob([o],{type:'text/plain'});
   const a=document.createElement('a');
